@@ -7,8 +7,35 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
 </head>
 <body>
   <app-root></app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 </html>
+
+<!-- Commands Used
+
+https://valor-software.com/ng2-charts/
+  
+ng add @angular/pwa
+npm install bootstrap jquery popper.js --save
+npm install --save font-awesome angular-font-awesome
+
+Add this to angular.json
+            "styles": [
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",              
+              "./node_modules/font-awesome/css/font-awesome.css"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",               
+              "./node_modules/popper.js/dist/umd/popper.min.js",                           
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
+         
+Update   \src\manifest.json
+  "display": "fullscreen", -
+->

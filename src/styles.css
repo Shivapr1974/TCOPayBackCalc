@@ -1,1 +1,179 @@
+
+.w3-radio {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: 6px;
+}
+
+.white{
+    background-color: white !important;
+}
+
+.hline-bottom {
+    margin-top:0;
+    margin-bottom:0;
+    border:0;
+    height:1px;    
+    padding-bottom: 1px;
+    border-bottom: 2px solid #ffff00; /* whichever color you prefer */
+}
+.complete{
+    font-weight: bold;
+
+}
+.retry:hover {
+    text-decoration:none;
+    text-shadow: 1px 1px 1px #555;
+}
+.retry{
+    cursor: pointer;
+    /* color: white !important; */
+    text-decoration:underline;    
+}
+.error{
+    color: red !important;
+    font-weight: bold;
+}
+
+.units {
+    color: #57ef4e8f;
+    font-weight: bold;
+    font-style: oblique;
+    /* font-size: 18px; */
+    text-shadow: 2px 2px 4px #212529;
+}
+.maintitle{
+    font-weight: bold;
+    font-size: 20px;
+}
+.subtitle{
+    color: red !important;
+    font-weight: bold;
+    font-size: 18px;
+}
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #003300 !important; 
+}
+/* .icon-bar {
+    background-color: white !important; 
+} */
+.btn-info{
+    color: #003300 !important;
+    background-color: #ffff00 !important;
+}
+
+.center {
+    border: 3px solid  #003300;
+    text-align: center;  
+    color: #ffff00; 
+}
+.right {
+    border: 3px solid  #003300;
+    text-align: right;  
+    color: #ffff00; 
+}
+.left {
+    border: 3px solid  #003300;
+    text-align: left;  
+    color: #ffff00; 
+}
+.container {
+    background-color: #003300 !important;
+}
+ 
+.btn-lg-round {
+    border-radius: 48px !important;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+canvas{
+    /* padding-left: 1px; */
+    padding-right: 6px;
+}
+input[readonly] {
+    background-color: #f8f9faba;
+}
+@media screen and (min-width: 600px) and (max-width: 768px)  {
+    .input { width: 72px;}
+    body{
+        font-size: 0.7rem !important;
+    }
+    .subtitle{
+        font-size: 12px;
+    }    
+    .footnote{
+        font-size: 0.5rem !important;
+    }     
+}
+@media screen and (min-width: 768px) and (max-width: 1000px)  {
+    .input { width: 105px;}
+    body{
+        font-size: 0.8rem !important;
+    }
+    .subtitle{
+        font-size: 14px;
+    }    
+    .footnote{
+        font-size: 0.6rem !important;
+    }     
+}
+@media screen and (min-width: 1000px) and (max-width: 1200px)  {
+    .input { width: 120px;}
+    .footnote{
+        font-size: 0.6rem !important;
+    }     
+}
+.xsmall { width: 80px;}
+.small { width: 90px;}
+.medium { width: 100px;}
+.xmedium {width: 300px; }
+.long {width: 325px; }
+.height25 { height: 25px;}
+.height30 { height: 30px;}
+.height35 { height: 35px;}
+.height40 { height: 40px;}
+.height50 { height: 50px;}
+.height100 { height: 100px;}
+.height125 { height: 125px;}
+.height150 { height: 150px;}
+input {
+    width: 110px;
+    text-align: right;
+}
+@media screen and (max-width: 329px) {
+    .xsmall { width: 55px;}
+    .small { width: 65px;}
+    .medium { width: 75px;}
+    .xmedium {width: 275px; }    
+    .long {width: 300px; }
+    .height25 { height: 20px;}
+    .height30 { height: 25px;}
+    .height35 { height: 28px;}
+    .height40 { height: 35px;}
+    .height50 { height: 45px;}
+    .height100 { height: 95px;}
+    .height125 { height: 120px;}
+    .height150 { height: 145px;}
+    input {
+        width: 80px;
+    }
+}
+@media screen and (min-width: 330px) and (max-width: 365px)  {
+        .xsmall { width: 70px;}
+        .small { width: 78px;}
+        .medium { width: 88px;}
+        .xmedium {width: 288px; }    
+        .long {width: 313px; }
+        .height25 { height: 23px;}
+        .height30 { height: 28px;}
+        .height35 { height: 32px;}
+        .height40 { height: 35px;}
+        .height50 { height: 45px;}
+        .height100 { height: 95px;}
+        .height125 { height: 120px;}
+        .height150 { height: 145px;}
+        input {
+            width: 100px;
+        }
+}
