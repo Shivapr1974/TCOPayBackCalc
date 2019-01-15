@@ -12,7 +12,7 @@ import { Component, Input, OnInit, ViewEncapsulation, AfterViewInit, ViewChild, 
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'TCOPaybackCalc';
+  title = 'LED PayBack Calculator';
   tcoFields: TCOClass;
   formdata;
   page: string ="ftl" ;
@@ -21,7 +21,7 @@ export class AppComponent {
   innerWidth: number;
   largeScreen: boolean=false;
   tcoCalcArrays= {};
-  fakeValue: boolean = false;
+  fakeValue: boolean = true;
   @ViewChild('refId') textDiv:ElementRef;
   ngAfterViewInit() {
       // console.log("Width..." + this.textDiv.nativeElement.offsetWidth);
@@ -33,9 +33,18 @@ export class AppComponent {
     this.setLargeScreen();
   }
   valuechange(event) {
+    let c9 =this.initalizeNum(this.formdata.controls.c9.value);
+    let d9=this.initalizeNum(this.formdata.controls.d9.value);
+    let e9=this.initalizeNum(this.formdata.controls.e9.value);
+    let c8=this.initalizeNum(this.formdata.controls.c8.value);
+    
+    this.formdata.controls['d8'].setValue(Math.round((c8*c9)/d9));
+    this.formdata.controls['e8'].setValue(Math.round((c8*c9)/e9));
+
     this.formdata.controls['c6'].setValue(this.initalizeNum(this.formdata.controls.c8.value) * this.initalizeNum(this.formdata.controls.c10.value));
     this.formdata.controls['d6'].setValue(this.initalizeNum(this.formdata.controls.d8.value) * this.initalizeNum(this.formdata.controls.d10.value));
     this.formdata.controls['e6'].setValue(this.initalizeNum(this.formdata.controls.e8.value) * this.initalizeNum(this.formdata.controls.e10.value));
+  
   }
 
   onResize(event) {
@@ -70,7 +79,7 @@ export class AppComponent {
           c6    : new FormControl(25000), //Initial Luminaire Cost (in ?)
           c7    : new FormControl(12000), //Luminaire Life (L70 for LEDs)
           c8    : new FormControl(2500), //Connected Lighting Load
-          c9    : new FormControl(0), //Luminaire Efficiency
+          c9    : new FormControl(50), //Luminaire Efficiency
           c10   : new FormControl(10), //Rs/watt (blended)
 
           // Other
@@ -104,7 +113,7 @@ export class AppComponent {
         c6    : new FormControl(), //Initial Luminaire Cost (in ?)
         c7    : new FormControl(), //Luminaire Life (L70 for LEDs)
         c8    : new FormControl(), //Connected Lighting Load
-        c9    : new FormControl(), //Luminaire Efficiency
+        c9    : new FormControl(50), //Luminaire Efficiency
         c10   : new FormControl(), //Rs/watt (blended)
 
         // Other
@@ -133,7 +142,7 @@ export class AppComponent {
         e18   : new FormControl() 
     });      
     }
-   
+    this.valuechange(null);
    
  }  
  initalizeNum(num1){
@@ -147,7 +156,7 @@ export class AppComponent {
     this.fvArray=[];
 
     this.page="result";
-    debugger;
+    // debugger;
     // FTL		
     this.tcoFields.c6  = this.initalizeNum( data.c6);
     this.tcoFields.c7  = this.initalizeNum( data.c7);

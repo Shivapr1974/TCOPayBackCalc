@@ -5,6 +5,11 @@
     position: relative;
     top: 6px;
 }
+@font-face {
+    font-family: 'myfont';
+    src: url('myfont.ttf')  format('truetype');
+    font-weight: bold;
+    }
 
 .white{
     background-color: white !important;
@@ -20,7 +25,6 @@
 }
 .complete{
     font-weight: bold;
-
 }
 .retry:hover {
     text-decoration:none;
@@ -35,12 +39,19 @@
     color: red !important;
     font-weight: bold;
 }
+body{
+    font-family: myfont !important;
+}
+.img{
+    height: 40px;
+    width: 34px; 
+}
 
 .units {
-    color: #57ef4e8f;
+    color: white;
     font-weight: bold;
     font-style: oblique;
-    /* font-size: 18px; */
+    font-size: 13px;
     text-shadow: 2px 2px 4px #212529;
 }
 .maintitle{
@@ -48,44 +59,46 @@
     font-size: 20px;
 }
 .subtitle{
-    color: red !important;
-    font-weight: bold;
-    font-size: 18px;
+    color: white !important;
+    /* font-weight: bold; */
+    /* font-size: 12px; */
+    text-shadow: 2px 2px 4px #212529;
 }
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: #003300 !important; 
+    background-color: #558546 !important; 
 }
 /* .icon-bar {
     background-color: white !important; 
 } */
 .btn-info{
-    color: #003300 !important;
+    color: black !important;
+    font-weight: bold;
     background-color: #ffff00 !important;
 }
 
 .center {
-    border: 3px solid  #003300;
+    border: 3px solid  #558546;
     text-align: center;  
     color: #ffff00; 
 }
 .right {
-    border: 3px solid  #003300;
+    border: 3px solid  #558546;
     text-align: right;  
     color: #ffff00; 
 }
 .left {
-    border: 3px solid  #003300;
+    border: 3px solid  #558546;
     text-align: left;  
     color: #ffff00; 
 }
 .container {
-    background-color: #003300 !important;
+    background-color: #558546 !important;
 }
  
 .btn-lg-round {
     border-radius: 48px !important;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
 }
 canvas{
     /* padding-left: 1px; */
@@ -104,6 +117,10 @@ input[readonly] {
     }    
     .footnote{
         font-size: 0.5rem !important;
+    }   
+    .units
+    {
+        font-size: 10px !important;
     }     
 }
 @media screen and (min-width: 768px) and (max-width: 1000px)  {
@@ -116,7 +133,11 @@ input[readonly] {
     }    
     .footnote{
         font-size: 0.6rem !important;
-    }     
+    }    
+    .units
+    {
+        font-size: 12px !important;
+    }  
 }
 @media screen and (min-width: 1000px) and (max-width: 1200px)  {
     .input { width: 120px;}
@@ -137,9 +158,11 @@ input[readonly] {
 .height100 { height: 100px;}
 .height125 { height: 125px;}
 .height150 { height: 150px;}
+.height250 { height: 250px;}
 input {
     width: 110px;
     text-align: right;
+    border-radius: 6px;
 }
 @media screen and (max-width: 329px) {
     .xsmall { width: 55px;}

@@ -33,8 +33,8 @@ export class LineChartDemoComponent implements OnInit {
     }
     // this.lineChartData = [{data: this.fvArray, label: "FV"}];
     this.lineChartData = [
-      {data: [], label: "FTL"},
-      {data: [], label: "Other"},
+      {data: [], label: "FTL/CFL/HID"},
+      {data: [], label: "Other LED"},
       {data: [], label: "Litrite"},
       {data: [], label: "Litrite-BI"},
     ];
@@ -45,50 +45,98 @@ export class LineChartDemoComponent implements OnInit {
     this.randomize();
   }
   // lineChart
-  public lineChartData:Array<any> = [
-    // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    // {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    // {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
-  ];
+  public lineChartData:Array<any> = [];
   public lineChartLabels:Array<any> = [];
-  
   public lineChartOptions:any = {
     responsive: true,
     maintainAspectRatio: false,
+    legend: {
+      display: true,
+            labels: {
+                // fontColor: 'rgb(255, 99, 132)',
+                fontFamily: 'myfont',
+                fontColor: 'black',
+                fontStyle: 'bold',
+                // fontSize: '8',
+                usePointStyle: 'true'
+            }
+    },
+    title: {
+      display: 'true',
+      text: '5 Years - Total Cost of Ownership & Payback Period',
+      fontSize: '14',
+      fontFamily: 'myfont',
+      fontColor: 'black',
+      fontStyle: 'bold'
+    },
+
     scales: {
       yAxes: [{
+        scaleLabel:  {
+          display: true,
+          labelString: 'Total Cost Of Ownership',
+          fontFamily: 'myfont',
+          fontSize: '12'
+        },        
+        //  id: 'TCO',
+        // type: 'linear',
+        // position: 'left', 
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+          fontFamily: 'myfont',
+          fontSize: '9'
         }
-      }]
-    }    
+      }],
+      xAxes: [{
+        scaleLabel:  {
+          display: true,
+          labelString: 'Months',
+          fontFamily: 'myfont',
+          fontSize: '12'
+        }, 
+        //  id: 'TCO',
+        // type: 'linear',
+        // position: 'left', 
+         ticks: {
+          beginAtZero: false,
+          fontFamily: 'myfont',
+          fontSize: '9'
+        }
+      }],
+    }   
   };
   public lineChartColors:Array<any> = [
     { // grey
       // backgroundColor: 'lightblue',
       backgroundColor: 'rgba(204,255,229,0.2)',
       borderColor: 'rgba(0,128,255,1)',
+      borderWidth: '1',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
+      pointRadius: '2',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
     { // dark grey
       // backgroundColor: 'green',
       backgroundColor: 'rgba(229,255,204,0.2)',
-      borderColor: 'rgba(0,102,0,1)',
+      borderColor: 'rgba(102,0,204,1)',
+      borderWidth: '1',
       pointBackgroundColor: 'rgba(77,83,96,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
+      pointRadius: '2',
       pointHoverBorderColor: 'rgba(77,83,96,1)'
     },
     { // grey
       // backgroundColor: 'red',
       backgroundColor: 'rgba(204,204,255,0.2)',
-      borderColor: 'rgba(102,0,204,1)',
+      borderColor: 'rgba(0,102,0,1)',
+      borderWidth: '1',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
+      pointRadius: '2',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     }
     ,
@@ -96,14 +144,16 @@ export class LineChartDemoComponent implements OnInit {
       // backgroundColor: 'orange',
       backgroundColor: 'rgba(255,255,204,1)',
       borderColor: 'rgba(153,0,0,1)',
+      borderWidth: '1',
       pointBackgroundColor: 'rgba(102,102,0,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
+      pointRadius: '2',
       pointHoverBorderColor: 'rgba(159,159,177,0.8)'
     }
   ];
-  public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
+  public lineChartLegend:string = 'line';
 
   public randomize():void {
     //console.log("this.lineChartData before: "+ this.lineChartData[0]);
@@ -114,10 +164,10 @@ export class LineChartDemoComponent implements OnInit {
     //   fvArrayLocal2.push(+this.fvArray[i]*3 +"");
     // }
     this.lineChartData = [
-      {data: this.tcoCalcArrays.ftl, label: "FTL"},
-      {data: this.tcoCalcArrays.litriteBi, label: "Litrite-BI"},
-      {data: this.tcoCalcArrays.other, label: "Other"},
+      {data: this.tcoCalcArrays.ftl, label: "FTL/CFL/HID"},
+      {data: this.tcoCalcArrays.other, label: "Other LED"},
       {data: this.tcoCalcArrays.litrite, label: "Litrite"},
+      {data: this.tcoCalcArrays.litriteBi, label: "Litrite-BI"},
       // {data: [], label: "Other"},
       // {data: [], label: "Litrite"},      
     ];

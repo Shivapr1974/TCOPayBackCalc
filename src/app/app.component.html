@@ -1,490 +1,500 @@
 <div class="container" (window:resize)="onResize($event)"  >
-    <div class="row center" #refId>
-        <div class="col-12 maintitle"  >
-                TCO & Payback Calculator 
-        </div>
-            <!-- largeScreen: {{largeScreen}}
-        
-        <div class="col-12"  >
-                Width: {{innerWidth}} / height: {{innerHeight}} / largeScreen: {{largeScreen}}
-        </div>           -->
-    </div>      
-    <form [formGroup]="formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
-        <div  *ngIf="largeScreen">
-        <!-- <div  *ngIf="largeScreen && page!='result'"> -->
-            <div class="row">
-                <div class="center  col-4"  >
-                </div>
-                <div class="center  col-2"  >
-                    <span class="subtitle">FTL</span>
-                </div>
-                <div class="center  col-2"  >
-                    <span class="subtitle">Other</span>
-                </div>
-                <div class="center  col-2"  >
-                   <span class="subtitle">Litrite</span>
-                </div>
-            </div>
-
-            <div class="row">
-                    <div class="right  col-4"  >
-                            Initial Luminaire Cost
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"  class="input"  name="c6" placeholder="" formControlName="c6" readonly>
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"  class="input"  name="d6" placeholder="" formControlName="d6" readonly>
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"  class="input"  name="e6" placeholder="" formControlName="e6"readonly>
-                    </div>
-                    <div class="left  col-2"  >
-                            <span class="units">₹</span>
-                    </div>
-        </div>
-    
-            <div class="row">
-                    <div class="right  col-4"  >
-                            Luminaire Life:
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"  class="input" name="c7" placeholder="" formControlName="c7">
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"  class="input" name="d7" placeholder="" formControlName="d7">
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"  class="input" name="e7" placeholder="" formControlName="e7">
-                    </div>
-                    <div class="left  col-2"  >
-                            <span class="units">Hours</span>
-                    </div>
-
-            </div>
-
-            <div class="row">
-                    <div class="right  col-4"  >
-                            Lighting Load:
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="c8" placeholder="" formControlName="c8" (change)="valuechange($event)">
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="d8" placeholder="" formControlName="d8" (change)="valuechange($event)">
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="e8" placeholder="" formControlName="e8" (change)="valuechange($event)">
-                    </div>
-                    <div class="left  col-2"  >
-                            <span class="units">Watts</span>
-                    </div>
-            </div>
-
-            <div class="row">
-                    <div class="right  col-4"  >
-                            Luminaire Efficiency:
-                    </div>
-                    <div class="center  col-2"  >
-                            <!-- <input type="number"   class="input" name="c9" placeholder="" formControlName="c9"> -->
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="d9" placeholder="" formControlName="d9" readonly>
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="e9" placeholder="" formControlName="e9" readonly>
-                    </div>
-                    <div class="left  col-2"  >
-                            <span class="units">Lumens/Watt</span>
-                    </div>
-
-            </div>
-            <div class="row">
-                    <div class="right  col-4"  >
-                            Rs/watt (blended):
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="c10" placeholder="" formControlName="c10" (change)="valuechange($event)">
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="d10" placeholder="" formControlName="d10" (change)="valuechange($event)">
-                    </div>
-                    <div class="center  col-2"  >
-                            <input type="number"   class="input" name="e10" placeholder="" formControlName="e10" (change)="valuechange($event)">
-                    </div>
-                    <div class="left  col-2"  >
-                            <span class="units">₹/W</span>
-                    </div>
-
-            </div>
-            <div class="row">
-                    <div class="center  col-12"  >
-                        <span class="subtitle">Usage Details</span>
-                    </div>
-            </div>                    
-            <div class="row">
-                    <div class="center  col-3"  >
-                            Cost/unit <span class="units">₹</span>
-                    </div>
-                    <div class="center  col-3"  >
-                            Inflation <span class="units">%</span>
-                    </div>
-                    <div class="center  col-3"  >
-                            Usage  <span class="units">Hrs</span>
-                    </div>
-                    <div class="left  col-3"  >
-                            Usage Litrite-BI <span class="units">Hrs</span>
-                    </div>
-            </div>
-            <div class="row">
-                    <div class="center  col-3"  >
-                           <input type="number" class="input" name="c16"    placeholder="" formControlName="c16">
-                    </div>
-                    <div class="center  col-3"  >
-                           <input type="number" class="input" name="c17"    placeholder="" formControlName="c17">
-                    </div>
-                    <div class="center  col-3"  >
-                           <input type="number" class="input" name="c18"    placeholder="" formControlName="c18">
-                    </div>
-                    <div class="left  col-3"  >
-                           <input type="number" class="input" name="e18" placeholder="" formControlName="e18">                            
-                    </div>
-
-                <!-- <div class="center  col-2"  ></div> -->
-            </div>
-            <div class="row">
-                    <div class="center  col-12"  >
-                        <!-- <input type="number" class="input" name="f15" placeholder="f15" formControlName="f15"><br> -->
-                    </div>
-            </div>       
-            <div class="row">
-                    <!-- <input type="number" class="input" name="e12" placeholder="" formControlName="e12"> -->
-                    <div class="center  col-12"  >
-                            <input type="submit" class="forsubmit btn btn-info btn-lg-round long" value="Calculate">        
-                    </div>
-            </div>
-
-    
-
-
-
-
-        </div>
-    
-        <div *ngIf="!largeScreen">
-            <div class="row" *ngIf="page=='ftl'">
-                <div class="center  col-12"  >
-                    <!-- FTL -->
-                    <span class="subtitle">FTL</span>
-                    <br>
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Initial Luminaire Cost:
-                        </div>
-                        <div class="left  col-6 medium"  >
-                            <input type="number"  name="c6" placeholder="" formControlName="c6" readonly> <span class="units"> ₹</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Luminaire Life:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="c7" placeholder="" formControlName="c7"> <span class="units"> Hrs</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Lighting Load:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="c8" placeholder="" formControlName="c8" (change)="valuechange($event)" ><span class="units"> W</span>
-                        </div>
-                    </div>      
-                    <!-- <div class="row">
-                        <div class="right  col-6"  >
-                            Luminaire Efficiency:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="c9" placeholder="" formControlName="c9"><span class="units"> L/W</span>
-                        </div>
-                    </div>       -->
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Rs/watt (blended):
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="c10" placeholder="" formControlName="c10" (change)="valuechange($event)" ><span class="units"> ₹/W</span>
-                        </div>
-                    </div>      
-
-                    <br>
-                    <div class="row center">
-                        <div class="col-12"  >
-                            <button (click)="setPage('other')" class=" btn btn-info btn-lg-round medium height40">Next</button>
-                        </div>
-                    </div>      
-
-                </div>
-            </div>
-
-
-            <div class="row" *ngIf="page=='other'">
-                <div class="center  col-12"  >
-                    <!-- Other -->
-                    <span class="subtitle">Other</span>
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Initial Luminaire Cost:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="d6" placeholder="" formControlName="d6" readonly> <span class="units"> ₹</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Luminaire Life:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="d7" placeholder="" formControlName="d7"><span class="units"> Hrs</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Lighting Load:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="d8" placeholder="" formControlName="d8" (change)="valuechange($event)" ><span class="units"> W</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Luminaire Efficiency:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="d9" placeholder="" formControlName="d9" readonly><span class="units"> L/W</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Rs/watt (blended):
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="d10" placeholder="" formControlName="d10" (change)="valuechange($event)" ><span class="units"> ₹/W</span>
-                        </div>
-                    </div>     
-                    <br> 
-                    <div class="row center">
-                            <div class="col-6 right"  >
-                                <button (click)="setPage('ftl')" class=" btn btn-info btn-lg-round medium height40">Previous</button>
-                            </div>
-                            <div class="col-6 left"  >
-                                <button (click)="setPage('litrite')" class=" btn btn-info btn-lg-round medium height40">Next</button>
-                            </div>
-                    </div>      
-                    </div>
-            </div>
-
-
-            <div class="row" *ngIf="page=='litrite'">
-                <div class="center  col-12"  >
-                    <!-- Litrite -->
-                    <span class="subtitle">Litrite</span>
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Initial Luminaire Cost:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="e6" placeholder="" formControlName="e6" readonly><span class="units"> ₹</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Luminaire Life:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="e7" placeholder="" formControlName="e7"><span class="units"> Hrs</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Lighting Load:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="e8" placeholder="" formControlName="e8" (change)="valuechange($event)" ><span class="units"> W</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Luminaire Efficiency:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="e9" placeholder="" formControlName="e9" readonly><span class="units"> L/W</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Rs/watt (blended):
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="e10" placeholder="" formControlName="e10" (change)="valuechange($event)" ><span class="units"> ₹/W</span>
-                        </div>
-                    </div>      
-                    <br>
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            <!-- No of Months to recover higher initial cost of Litrite; -->
-                        </div>
-                        <div class="left  col-6"  >
-                            <!-- <input type="number" name="e12" placeholder="e12" formControlName="e12"> -->
-                        </div>
-                    </div>            
-                    <br>
-                    <div class="row center">
-                        <div class="col-6 right"  >
-                            <button (click)="setPage('other')" class=" btn btn-info btn-lg-round medium height40">Previous</button>
-                        </div>
-                        <div class="col-6 left"  >
-                            <button (click)="setPage('usage')" class=" btn btn-info btn-lg-round medium height40">Next</button>
-                        </div>
-                    </div>      
-
-
-                </div>
-            </div> 
-
-
-            <div class="row"  *ngIf="page=='usage'">
-                <div class="center  col-12"  >
-                </div>            
-
-                <div class="center  col-12"  >
-                    <!-- Usage Details: -->
-                    <span class="subtitle">Usage Details</span>
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Cost per unit (KWH):
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="c16"    placeholder="" formControlName="c16"><span class="units"> ₹</span>
-                        </div>
-                    </div>               
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Inflation:
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="c17"    placeholder="" formControlName="c17"><span class="units"> %</span>
-                        </div>
-                    </div>                              
-                    <div class="row">
-                        <div class="right  col-6"  >
-                            Usage (per luminaire per day):
-                        </div>
-                        <div class="left  col-6"  >
-                            <input type="number" name="c18"    placeholder="" formControlName="c18"><span class="units"> Hrs</span>
-                        </div>
-                    </div>      
-                    <div class="row">
-                            <div class="right  col-6"  >
-                                    Usage Litrite-BI:
-                            </div>
-                            <div class="left  col-6"  >
-                                    <input type="number" name="e18" placeholder="" formControlName="e18"><span class="units"> Hrs</span>
-                            </div>
-                        </div>      
-                        
-                    
-                    <div class="row">
-                        <div class="center  col-12"  >
-                            <!-- <input type="number" name="f15" placeholder="f15" formControlName="f15"><br>
-                            <input type="number" name="e18" placeholder="e18" formControlName="e18"> -->
-                        </div>
-                    </div>       
-                    <br>         
-                    <div class="row">
-                        <div class="center  col-12"  >
-                            <input type="submit" class="forsubmit btn btn-info btn-lg-round long" value="Calculate">        
-                        </div>
-                    </div>   
-
-
-                </div>
-            </div>       
-        </div>            
-   
-    </form>
-  </div>
-  
-  <div class="row" *ngIf="page=='result'">
-  <!-- <div class="row"> -->
-
-      <div class="center  col-12"  >
-          <div class="row center">
-              <div class="col-12" *ngIf="!largeScreen" >
-                  <button (click)="setPage('ftl')" class=" btn btn-info btn-lg-round long height40">Restart</button>
-              </div>
-          </div>   
-          <div class="row center">
-              <!-- <div class="col-1"  ></div> -->
-              <div class="col-12 white"  >
-                  <app-line-chart-demo [fvArray]="fvArray" [tcoCalcArrays]="tcoCalcArrays" ></app-line-chart-demo>
-              </div>
-              <!-- <div class="col-1"  ></div> -->
-          </div>      
-          <div *ngIf="largeScreen"> 
-                <div class="row"  >
-                        <div class="center subtitle col-12"  >
-                                Total Cost of ownership
-                        </div>
-                </div>            
-
-            <div class="row"  >
-                <div class="center subtitle col-2"  >
-                       Month
-                </div>
-                <div class="center subtitle col-1"  >
-                        Cum. Hrs.
-                </div>
-                <div class="center  subtitle col-2"  >
-                    FTL
-                </div>              
-                <div class="center  subtitle col-2"  >
-                        Other
-                </div>              
-                <div class="center  subtitle col-2"  >
-                        Litrite
-                </div>              
-                <div class="center  subtitle col-2"  >
-                        Litrite-BI
-                </div>              
-                <!-- <div class="center  subtitle col-1"  >
-                        
-                </div>               -->
-            </div>            
-            <div class="row" *ngFor="let number of fvArray; let i = index" >
-                <div class="center  col-2"  >
-                    {{i+1}} : 
-                </div>
-                <div class="center  col-1"  >
-                        {{tcoCalcArrays.cumHrs[i]}}
-                </div>
-                <div class="center  col-2"  >
-                    {{tcoCalcArrays.ftl[i]}}
-                </div>
-                <div class="center  col-2"  >
-                        {{tcoCalcArrays.other[i]}}
-                </div>
-                <div class="center  col-2"  >
-                        {{tcoCalcArrays.litrite[i]}}
-                </div>
-                <div class="center  col-2"  >
-                        {{tcoCalcArrays.litriteBi[i]}}
-                </div>  
-                <!-- <div class="center  col-1"  >
-                        {{tcoCalcArrays.h23[i]}}
-                </div>                                           -->
-            </div>          
-          </div>   
+  <div class="row center" #refId>
+      <div class="col-12 maintitle"  >
+        <img class="img" src="favicon.ico"/>      
+        &nbsp;&nbsp;&nbsp;Litrite - TCO & Payback Calculator 
       </div>
+          <!-- largeScreen: {{largeScreen}}
+      
+      <div class="col-12"  >
+              Width: {{innerWidth}} / height: {{innerHeight}} / largeScreen: {{largeScreen}}
+      </div>           -->
   </div>      
+  <form [formGroup]="formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+      <div  *ngIf="largeScreen">
+      <!-- <div  *ngIf="largeScreen && page!='result'"> -->
+          <div class="row">
+              <div class="center  col-4"  >
+              </div>
+              <div class="center  col-2"  >
+                  <span class="subtitle">&nbsp;FTL/CFL/HID</span>
+              </div>
+              <div class="center  col-2"  >
+                  <span class="subtitle">&nbsp;Other LED Brands</span>
+              </div>
+              <div class="center  col-2"  >
+                 <span class="subtitle">Litrite</span>
+              </div>
+          </div>
+
+          <div class="row">
+                  <div class="right  col-4"  >
+                          Initial Cost:
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"  class="input"  name="c6" placeholder="" formControlName="c6" readonly>
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"  class="input"  name="d6" placeholder="" formControlName="d6" readonly>
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"  class="input"  name="e6" placeholder="" formControlName="e6"readonly>
+                  </div>
+                  <div class="left  col-2"  >
+                          <span class="units">₹</span>
+                  </div>
+      </div>
+  
+          <div class="row">
+                  <div class="right  col-4"  >
+                          Luminaire Life:
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"  class="input" name="c7" placeholder="" formControlName="c7">
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"  class="input" name="d7" placeholder="" formControlName="d7">
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"  class="input" name="e7" placeholder="" formControlName="e7">
+                  </div>
+                  <div class="left  col-2"  >
+                          <span class="units">hours</span>
+                  </div>
+
+          </div>
+
+          <div class="row">
+                  <div class="right  col-4"  >
+                          Lighting Load:
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="c8" placeholder="" formControlName="c8" (change)="valuechange($event)">
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="d8" placeholder="" formControlName="d8" (change)="valuechange($event)" readonly>
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="e8" placeholder="" formControlName="e8" (change)="valuechange($event)" readonly>
+                  </div>
+                  <div class="left  col-2"  >
+                          <span class="units">watts</span>
+                  </div>
+          </div>
+
+          <div class="row">
+                  <div class="right  col-4"  >
+                          Luminaire Efficiency:
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="c9" placeholder="" formControlName="c9" (change)="valuechange($event)">
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="d9" placeholder="" formControlName="d9" (change)="valuechange($event)">
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="e9" placeholder="" formControlName="e9" (change)="valuechange($event)">
+                  </div>
+                  <div class="left  col-2"  >
+                          <span class="units">lumens/watt</span>
+                  </div>
+
+          </div>
+          <div class="row">
+                  <div class="right  col-4"  >
+                          Rs/watt (blended):
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="c10" placeholder="" formControlName="c10" (change)="valuechange($event)">
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="d10" placeholder="" formControlName="d10" (change)="valuechange($event)">
+                  </div>
+                  <div class="center  col-2"  >
+                          <input type="number"   class="input" name="e10" placeholder="" formControlName="e10" (change)="valuechange($event)">
+                  </div>
+                  <div class="left  col-2"  >
+                          <span class="units">₹/W</span>
+                  </div>
+
+          </div>  
+
+          <div class="row">
+                  <div>
+                      <hr>
+                  </div>
+          </div>                    
+          <div class="row">                 
+                  <div class="center  col-2"  >
+                      <!-- dummy -->
+                  </div>
+                  <div class="right  col-2 subtitle"  >
+                      Other Details
+                  </div>
+                  <div class="center  col-2"  >
+                      Energy/Kw <span class="units">₹</span>
+                  </div>
+                  <div class="center  col-2"  >
+                      Inflation <span class="units">%</span>
+                  </div>
+                  <div class="center  col-2"  >
+                      Usage  <span class="units">hrs</span>
+                  </div>
+                  <div class="left  col-2"  >
+                      &nbsp;&nbsp;Usage(BI) <span class="units">hrs</span>
+                  </div>
+          </div>
+          <div class="row">                
+                  <div class="center  col-2"  >
+                    <!-- dummy -->
+                  </div>
+                  <div class="center  col-2"  >
+                    <!-- dummy -->
+                  </div>
+                  <div class="center  col-2"  >
+                         <input type="number" class="input" name="c16"    placeholder="" formControlName="c16">
+                  </div>
+                  <div class="center  col-2"  >
+                         <input type="number" class="input" name="c17"    placeholder="" formControlName="c17">
+                  </div>
+                  <div class="center  col-2"  >
+                         <input type="number" class="input" name="c18"    placeholder="" formControlName="c18">
+                  </div>
+                  <div class="left  col-2"  >
+                         <input type="number" class="input" name="e18" placeholder="" formControlName="e18">                            
+                  </div>
+
+              <!-- <div class="center  col-2"  ></div> -->
+          </div>
+          <div class="row">
+                  <div class="center  col-12"  >
+                      <!-- <input type="number" class="input" name="f15" placeholder="f15" formControlName="f15"><br> -->
+                  </div>
+          </div>       
+          <div class="row">
+              <!-- <div class="right  col-6"  >
+                  No of Months to Recover Cost:
+              </div> -->
+                  <!-- <input type="number" class="input" name="e12" placeholder="" formControlName="e12"> -->
+                  <div class="center  col-12"  >
+                          <input type="submit" class="forsubmit btn btn-info btn-lg-round medium" value="Plot Graph">        
+                  </div>
+          </div>
+      </div>
+      <!-- No of Months to Recover Cost:
+      {{this.tcoFields.e12}} -->
+      <div *ngIf="!largeScreen">
+          <div class="row" *ngIf="page=='ftl'">
+              <div class="center  col-12"  >
+                  <!-- FTL -->
+                  <span class="subtitle">FTL/CFL/HID</span>
+                  <br>
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Initial Cost:
+                      </div>
+                      <div class="left  col-6 medium"  >
+                          <input type="number"  name="c6" placeholder="" formControlName="c6" readonly> <span class="units"> ₹</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Luminaire Life:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="c7" placeholder="" formControlName="c7"> <span class="units"> hrs</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Lighting Load:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="c8" placeholder="" formControlName="c8" (change)="valuechange($event)" ><span class="units"> w</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Lumin. Efficiency:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="c9" placeholder="" formControlName="c9" (change)="valuechange($event)"><span class="units"> l/w</span>
+                      </div>
+                  </div>       
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Rs/watt (blended):
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="c10" placeholder="" formControlName="c10" (change)="valuechange($event)" ><span class="units"> ₹/w</span>
+                      </div>
+                  </div>      
+
+                  <br>
+                  <div class="row center">
+                      <div class="col-6 right"  >
+                          <!-- dummy spacing -->
+                      </div>
+                      <div class="col-6 left"  >
+                          <button (click)="setPage('other')" class=" btn btn-info btn-lg-round medium height40">Next</button>
+                      </div>
+                  </div>      
+              </div>
+          </div>
+          <div class="row" *ngIf="page=='other'">
+              <div class="center  col-12"  >
+                  <!-- Other -->
+                  <span class="subtitle">Other LED</span>
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Initial Cost:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="d6" placeholder="" formControlName="d6" readonly> <span class="units"> ₹</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Luminaire Life:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="d7" placeholder="" formControlName="d7"><span class="units"> hrs</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Lighting Load:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="d8" placeholder="" formControlName="d8" (change)="valuechange($event)" readonly><span class="units"> w</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Lumin. Efficiency:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="d9" placeholder="" formControlName="d9" (change)="valuechange($event)"><span class="units"> l/w</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Rs/watt (blended):
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="d10" placeholder="" formControlName="d10" (change)="valuechange($event)" ><span class="units"> ₹/w</span>
+                      </div>
+                  </div>     
+                  <br> 
+                  <div class="row center">
+                          <div class="col-6 right"  >
+                              <button (click)="setPage('ftl')" class=" btn btn-info btn-lg-round medium height40">Previous</button>
+                          </div>
+                          <div class="col-6 left"  >
+                              <button (click)="setPage('litrite')" class=" btn btn-info btn-lg-round medium height40">Next</button>
+                          </div>
+                  </div>      
+                  </div>
+          </div>
+
+
+          <div class="row" *ngIf="page=='litrite'">
+              <div class="center  col-12"  >
+                  <!-- Litrite -->
+                  <span class="subtitle">Litrite</span>
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Initial Cost:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="e6" placeholder="" formControlName="e6" readonly><span class="units"> ₹</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Luminaire Life:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="e7" placeholder="" formControlName="e7"><span class="units"> hrs</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Lighting Load:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="e8" placeholder="" formControlName="e8" (change)="valuechange($event)" readonly><span class="units"> w</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Lumin. Efficiency:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="e9" placeholder="" formControlName="e9" (change)="valuechange($event)"><span class="units"> l/w</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Rs/watt (blended):
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="e10" placeholder="" formControlName="e10" (change)="valuechange($event)" ><span class="units"> ₹/w</span>
+                      </div>
+                  </div>      
+                  <br>
+                  <!-- <div class="row">
+                      <div class="right  col-6"  >
+                          No of Months to Recover Cost;
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="e12" placeholder="e12" formControlName="e12">
+                      </div>
+                  </div>             -->
+                
+                  <div class="row center">
+                      <div class="col-6 right"  >
+                          <button (click)="setPage('other')" class=" btn btn-info btn-lg-round medium height40">Previous</button>
+                      </div>
+                      <div class="col-6 left"  >
+                          <button (click)="setPage('usage')" class=" btn btn-info btn-lg-round medium height40">Next</button>
+                      </div>
+                  </div>      
+              </div>
+          </div> 
+          <div class="row"  *ngIf="page=='usage'">
+              <div class="center  col-12"  >
+              </div>            
+              <div class="center  col-12"  >
+                  <!-- Usage Details: -->
+                  <span class="subtitle">Other Details</span>
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Energy/Kw:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="c16"    placeholder="" formControlName="c16"><span class="units"> ₹</span>
+                      </div>
+                  </div>               
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Inflation:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="c17"    placeholder="" formControlName="c17"><span class="units"> %</span>
+                      </div>
+                  </div>                              
+                  <div class="row">
+                      <div class="right  col-6"  >
+                          Usage:
+                      </div>
+                      <div class="left  col-6"  >
+                          <input type="number" name="c18"    placeholder="" formControlName="c18"><span class="units"> hrs</span>
+                      </div>
+                  </div>      
+                  <div class="row">
+                          <div class="right  col-6"  >
+                                  Usage(BI):
+                          </div>
+                          <div class="left  col-6"  >
+                                  <input type="number" name="e18" placeholder="" formControlName="e18"><span class="units"> hrs</span>
+                          </div>
+                      </div>      
+                  <div class="row">
+                      <div class="center  col-12"  >
+                          <!-- <input type="number" name="f15" placeholder="f15" formControlName="f15"><br>
+                          <input type="number" name="e18" placeholder="e18" formControlName="e18"> -->
+                      </div>
+                  </div>       
+                  <br>        
+                  <br>
+                  <div class="row center">
+                    <div class="col-6 right"  >
+                         <button (click)="setPage('litrite')" class=" btn btn-info btn-lg-round medium height40">Previous</button>
+                    </div> 
+                    <div class="col-6 left"  >
+                          <input type="submit" class="forsubmit btn btn-info btn-lg-round medium height40" value="Plot Graph">        
+                      </div>
+                  </div>   
+              </div>
+          </div>       
+      </div>            
+ 
+  </form>
+</div>
+
+
+<div class="row height250" *ngIf="page!='result' && largeScreen">
+</div>  
+<div class="row" *ngIf="page=='result'">
+<!-- <div class="row"> -->
+
+    <div class="center  col-12"  >
+        <div class="row center">
+            <div class="col-12" *ngIf="!largeScreen" >
+                <button (click)="setPage('ftl')" class=" btn btn-info btn-lg-round medium height40">Restart</button>
+            </div>
+        </div>   
+        <div class="row center">
+            <!-- <div class="col-1"  ></div> -->
+            <div class="col-12 white"  >
+                <app-line-chart-demo [fvArray]="fvArray" [tcoCalcArrays]="tcoCalcArrays" ></app-line-chart-demo>
+            </div>
+            <!-- <div class="col-1"  ></div> -->
+        </div>      
+        <div *ngIf="largeScreen"> 
+              <div class="row"  >
+                      <div class="center subtitle col-12"  >
+                              5 Years - Total Cost of Ownership Comparison Table
+                      </div>
+              </div>            
+
+          <div class="row"  >
+              <div class="center subtitle col-2"  >
+                      End<br> of<br> Month
+              </div>
+              <div class="center subtitle col-1"  >
+                      Cumulative Running Hours
+              </div>
+              <div class="center  subtitle col-2"  >
+                      FTL/CFL/HID<br><br>₹'s
+              </div>              
+              <div class="center  subtitle col-2"  >
+                      Other LED<br>Luminaires<br>₹'s
+              </div>              
+              <div class="center  subtitle col-2"  >
+                      Litrite<br><br>₹'s
+              </div>              
+              <div class="center  subtitle col-2"  >
+                      Litrite with<br>Basic Intelligence<br>₹'s
+              </div>              
+              <!-- <div class="center  subtitle col-1"  >
+                      
+              </div>               -->
+          </div>            
+          <div class="row" *ngFor="let number of fvArray; let i = index" >
+              <div class="center  col-2"  >
+                  {{i+1}} : 
+              </div>
+              <div class="center  col-1"  >
+                      {{tcoCalcArrays.cumHrs[i]}}
+              </div>
+              <div class="center  col-2"  >
+                  {{tcoCalcArrays.ftl[i]}}
+              </div>
+              <div class="center  col-2"  >
+                      {{tcoCalcArrays.other[i]}}
+              </div>
+              <div class="center  col-2"  >
+                      {{tcoCalcArrays.litrite[i]}}
+              </div>
+              <div class="center  col-2"  >
+                      {{tcoCalcArrays.litriteBi[i]}}
+              </div>  
+              <!-- <div class="center  col-1"  >
+                      {{tcoCalcArrays.h23[i]}}
+              </div>                                           -->
+          </div>          
+        </div>   
+    </div>
+</div>      

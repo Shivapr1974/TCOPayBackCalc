@@ -136,6 +136,8 @@ export class TCOClass {
        
     //    console.log(b23 + " " + c23 + " " + d23 + " " + e23+ " " + f23+ " " + g23   + " " + h23 );
 
+        this.e12=100;
+        
         return fv.toFixed(2);
     }
 
